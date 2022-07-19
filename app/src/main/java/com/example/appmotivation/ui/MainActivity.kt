@@ -1,8 +1,11 @@
-package com.example.appmotivation
+package com.example.appmotivation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.appmotivation.infra.MotivationConstants
+import com.example.appmotivation.R
+import com.example.appmotivation.infra.SecurityPreferences
 import com.example.appmotivation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -15,10 +18,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //esconder a barra de navegação
         supportActionBar?.hide()
 
         handleUserName()
 
+        //eventos
         binding.buttonNewPhrase.setOnClickListener(this)
     }
 
@@ -29,7 +34,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun handleUserName() {
-        val name = SecurityPreferences(this).getString("USER_NAME")
+        val name = SecurityPreferences(this).getString(MotivationConstants.KEY.USER_NAME)
         binding.textUserName.text = "Olá, $name!"
     }
 }

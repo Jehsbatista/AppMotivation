@@ -31,7 +31,7 @@ class Mock {
     )
 
     fun getPhrase(value: Int): String {
-        val filtered = mListPhrase.filter { it.categoryId == value }
+        val filtered = mListPhrase.filter { it.categoryId == value || value == all }
         return filtered[Random.nextInt(filtered.size)].description
     }
 
